@@ -59,15 +59,6 @@
       <Variable x:TypeArguments="x:Int32" Name="noofDays" />
       <Variable x:TypeArguments="x:String" Name="dateOfNow" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtCSV" />
-      <Variable x:TypeArguments="sd:DataTable" Name="marketout" />
-      <Variable x:TypeArguments="x:String" Name="VDate" />
-      <Variable x:TypeArguments="x:String" Name="VName" />
-      <Variable x:TypeArguments="x:String" Name="VOpen" />
-      <Variable x:TypeArguments="x:String" Name="VHigh" />
-      <Variable x:TypeArguments="x:String" Name="VLow" />
-      <Variable x:TypeArguments="x:String" Name="VVolume" />
-      <Variable x:TypeArguments="x:String" Name="VAdjclose" />
-      <Variable x:TypeArguments="x:String" Name="VClose" />
     </Flowchart.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -87,13 +78,13 @@
           <av:Size x:Key="ShapeSize">200,66</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Yahoo FinanceData" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_11">
+      <Sequence DisplayName="Yahoo FinanceData" sap:VirtualizedContainerService.HintSize="476,1430" sap2010:WorkflowViewState.IdRef="Sequence_11">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="682,1338" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="data\Market Symbols.xlsx">
+        <ui:ExcelApplicationScope Password="{x:Null}" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,1338" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="data\Market Symbols.xlsx">
           <ui:ExcelApplicationScope.Body>
             <ActivityAction x:TypeArguments="ui:WorkbookApplication">
               <ActivityAction.Argument>
@@ -492,221 +483,6 @@
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
         </ui:ExcelApplicationScope>
-        <Sequence DisplayName="Sequence - Databse" sap:VirtualizedContainerService.HintSize="682,1176" sap2010:WorkflowViewState.IdRef="Sequence_62">
-          <Sequence.Variables>
-            <Variable x:TypeArguments="x:String" Name="variable" />
-          </Sequence.Variables>
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:ReadCsvFile Encoding="{x:Null}" DataTable="[marketout]" Delimitator="Comma" DisplayName="Read CSV - FilteredData" FilePath="[&quot;data\Consolidated&quot;+dateOfNow+&quot;.csv&quot;]" sap:VirtualizedContainerService.HintSize="640,51" sap2010:WorkflowViewState.IdRef="ReadCsvFile_7">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:ReadCsvFile>
-          <ui:ForEach x:TypeArguments="sd:DataRow" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="640,993" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[marketout.Rows]">
-            <ui:ForEach.Body>
-              <ActivityAction x:TypeArguments="sd:DataRow">
-                <ActivityAction.Argument>
-                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
-                </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="604,859" sap2010:WorkflowViewState.IdRef="Sequence_70">
-                  <Sequence.Variables>
-                    <Variable x:TypeArguments="ui:GenericValue" Name="result" />
-                    <Variable x:TypeArguments="ui:DatabaseConnection" Name="DBconne" />
-                  </Sequence.Variables>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="562,540" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[marketout.Columns]">
-                    <ui:ForEach.Body>
-                      <ActivityAction x:TypeArguments="sd:DataColumn">
-                        <ActivityAction.Argument>
-                          <DelegateInArgument x:TypeArguments="sd:DataColumn" Name="Col" />
-                        </ActivityAction.Argument>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,406" sap2010:WorkflowViewState.IdRef="Sequence_71">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_25">
-                            <Assign.To>
-                              <OutArgument x:TypeArguments="x:String">[variable]</OutArgument>
-                            </Assign.To>
-                            <Assign.Value>
-                              <InArgument x:TypeArguments="x:String">[Col.ToString]</InArgument>
-                            </Assign.Value>
-                          </Assign>
-                          <If Condition="[variable.Equals(&quot;Name&quot;)]" sap:VirtualizedContainerService.HintSize="484,214" sap2010:WorkflowViewState.IdRef="If_1">
-                            <sap:WorkflowViewStateService.ViewState>
-                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                              </scg:Dictionary>
-                            </sap:WorkflowViewStateService.ViewState>
-                            <If.Then>
-                              <Sequence sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_72">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_15">
-                                  <Assign.To>
-                                    <OutArgument x:TypeArguments="x:String">[VName]</OutArgument>
-                                  </Assign.To>
-                                  <Assign.Value>
-                                    <InArgument x:TypeArguments="x:String">[Row(Col.ToString).ToString]</InArgument>
-                                  </Assign.Value>
-                                </Assign>
-                              </Sequence>
-                            </If.Then>
-                            <If.Else>
-                              <If Condition="[variable.Equals(&quot;Date&quot;)]" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_7">
-                                <sap:WorkflowViewStateService.ViewState>
-                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                  </scg:Dictionary>
-                                </sap:WorkflowViewStateService.ViewState>
-                                <If.Then>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_18">
-                                    <Assign.To>
-                                      <OutArgument x:TypeArguments="x:String">[VDate]</OutArgument>
-                                    </Assign.To>
-                                    <Assign.Value>
-                                      <InArgument x:TypeArguments="x:String">[Row(Col.ToString).ToString]</InArgument>
-                                    </Assign.Value>
-                                  </Assign>
-                                </If.Then>
-                                <If.Else>
-                                  <If Condition="[variable.Equals(&quot;Open&quot;)]" sap:VirtualizedContainerService.HintSize="1797,800" sap2010:WorkflowViewState.IdRef="If_6">
-                                    <If.Then>
-                                      <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_19">
-                                        <Assign.To>
-                                          <OutArgument x:TypeArguments="x:String">[VOpen]</OutArgument>
-                                        </Assign.To>
-                                        <Assign.Value>
-                                          <InArgument x:TypeArguments="x:String">[Row(Col.ToString).ToString]</InArgument>
-                                        </Assign.Value>
-                                      </Assign>
-                                    </If.Then>
-                                    <If.Else>
-                                      <If Condition="[variable.Equals(&quot;High&quot;)]" sap:VirtualizedContainerService.HintSize="1490,652" sap2010:WorkflowViewState.IdRef="If_5">
-                                        <If.Then>
-                                          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_20">
-                                            <Assign.To>
-                                              <OutArgument x:TypeArguments="x:String">[VHigh]</OutArgument>
-                                            </Assign.To>
-                                            <Assign.Value>
-                                              <InArgument x:TypeArguments="x:String">[Row(Col.ToString).ToString]</InArgument>
-                                            </Assign.Value>
-                                          </Assign>
-                                        </If.Then>
-                                        <If.Else>
-                                          <If Condition="[variable.Equals(&quot;Low&quot;)]" sap:VirtualizedContainerService.HintSize="1183,504" sap2010:WorkflowViewState.IdRef="If_4">
-                                            <If.Then>
-                                              <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_21">
-                                                <Assign.To>
-                                                  <OutArgument x:TypeArguments="x:String">[VLow]</OutArgument>
-                                                </Assign.To>
-                                                <Assign.Value>
-                                                  <InArgument x:TypeArguments="x:String">[Row(Col.ToString).ToString]</InArgument>
-                                                </Assign.Value>
-                                              </Assign>
-                                            </If.Then>
-                                            <If.Else>
-                                              <If Condition="[variable.Equals(&quot;Close&quot;)]" sap:VirtualizedContainerService.HintSize="876,356" sap2010:WorkflowViewState.IdRef="If_3">
-                                                <If.Then>
-                                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_22">
-                                                    <Assign.To>
-                                                      <OutArgument x:TypeArguments="x:String">[VClose]</OutArgument>
-                                                    </Assign.To>
-                                                    <Assign.Value>
-                                                      <InArgument x:TypeArguments="x:String">[Row(Col.ToString).ToString]</InArgument>
-                                                    </Assign.Value>
-                                                  </Assign>
-                                                </If.Then>
-                                                <If.Else>
-                                                  <If Condition="[variable.Equals(&quot;AdjClose&quot;)]" sap:VirtualizedContainerService.HintSize="569,208" sap2010:WorkflowViewState.IdRef="If_2">
-                                                    <sap:WorkflowViewStateService.ViewState>
-                                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                                                      </scg:Dictionary>
-                                                    </sap:WorkflowViewStateService.ViewState>
-                                                    <If.Then>
-                                                      <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_23">
-                                                        <Assign.To>
-                                                          <OutArgument x:TypeArguments="x:String">[VAdjclose]</OutArgument>
-                                                        </Assign.To>
-                                                        <Assign.Value>
-                                                          <InArgument x:TypeArguments="x:String">[Row(Col.ToString).ToString]</InArgument>
-                                                        </Assign.Value>
-                                                      </Assign>
-                                                    </If.Then>
-                                                    <If.Else>
-                                                      <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_24">
-                                                        <Assign.To>
-                                                          <OutArgument x:TypeArguments="x:String">[VVolume]</OutArgument>
-                                                        </Assign.To>
-                                                        <Assign.Value>
-                                                          <InArgument x:TypeArguments="x:String">[Row(Col.ToString).ToString]</InArgument>
-                                                        </Assign.Value>
-                                                      </Assign>
-                                                    </If.Else>
-                                                  </If>
-                                                </If.Else>
-                                              </If>
-                                            </If.Else>
-                                          </If>
-                                        </If.Else>
-                                      </If>
-                                    </If.Else>
-                                  </If>
-                                </If.Else>
-                              </If>
-                            </If.Else>
-                          </If>
-                        </Sequence>
-                      </ActivityAction>
-                    </ui:ForEach.Body>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:ForEach>
-                  <ui:DatabaseConnect DatabaseConnection="[DBconne]" DisplayName="Connect" sap:VirtualizedContainerService.HintSize="562,59" sap2010:WorkflowViewState.IdRef="DatabaseConnect_1" ProviderName="System.Data.SqlClient" ConnectionString="Data Source=NX-SYS-30\SQLEXPRESS;Initial Catalog=uipathexample;Integrated Security=True" />
-                  <ui:ExecuteNonQuery AffectedRecords="{x:Null}" ContinueOnError="{x:Null}" ExistingDbConnection="{x:Null}" TimeoutMS="{x:Null}" CommandType="Text" DisplayName="Execute Non Query" sap:VirtualizedContainerService.HintSize="562,88" sap2010:WorkflowViewState.IdRef="ExecuteNonQuery_3" ProviderName="System.Data.SqlClient" Sql="INSERT Into marketdata(Name, marketdate, Openvalue, High, Low, Closevalue, Adjclose, Volume) VALUES(@Name, @Date, @Open, @HIgh, @Low, @Close, @Adjclose, @Volume)" ConnectionString="Data Source=NX-SYS-30\SQLEXPRESS;Initial Catalog=uipathexample;Integrated Security=True">
-                    <ui:ExecuteNonQuery.Parameters>
-                      <InArgument x:TypeArguments="x:String" x:Key="Name">[VName]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Date">[VDate]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Open">[VOpen]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="HIgh">[VHigh]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Low">[VLow]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Close">[VClose]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Adjclose">[VAdjclose]</InArgument>
-                      <InArgument x:TypeArguments="x:String" x:Key="Volume">[VVolume]</InArgument>
-                    </ui:ExecuteNonQuery.Parameters>
-                  </ui:ExecuteNonQuery>
-                </Sequence>
-              </ActivityAction>
-            </ui:ForEach.Body>
-          </ui:ForEach>
-        </Sequence>
       </Sequence>
     </FlowStep>
     <FlowStep>
@@ -1138,7 +914,7 @@
           <av:Size x:Key="ShapeSize">200,66</av:Size>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Sequence DisplayName="Yahoo FinanceData - Backup" sap:VirtualizedContainerService.HintSize="586,2011" sap2010:WorkflowViewState.IdRef="Sequence_61">
+      <Sequence DisplayName="Yahoo FinanceData - Backup" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_61">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
